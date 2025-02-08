@@ -19,6 +19,7 @@ Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
         Application.Calculate ' Пересчитывает все формулы в книге
     End If
 End Sub
+```
 Сохраните изменения и закройте редактор VBA.
 Как использовать
 Каждый раз, когда данные на любом из листов изменяются, макрос автоматически пересчитывает все формулы в книге.
@@ -29,26 +30,27 @@ End Sub
 Простота в установке: Все, что нужно — это добавить код в ThisWorkbook, и макрос сразу начнёт работать.
 Лицензия
 Этот проект распространяется под лицензией MIT. Подробнее см. файл LICENSE.
+_________________________________________________________________________________________________________________________________
 
-SmartFormulaUpdater
-Description
-SmartFormulaUpdater is a macro designed to automatically update formulas in Excel worksheets when data changes. It helps users maintain accurate calculations without the need to manually recalculate formulas.
+# SmartFormulaUpdater
+
+## Description
+**SmartFormulaUpdater** is a macro designed to automatically update formulas in Excel worksheets when data changes. It helps users maintain accurate calculations without the need to manually recalculate formulas.
 
 This macro tracks data changes in any sheet of the workbook and automatically updates all formulas by using the Application.Calculate command. This solution is perfect for large workbooks where manually updating formulas could be time-consuming.
 
-Installation
-Open Excel and press Alt + F11 to open the VBA editor.
-In the left panel, find ThisWorkbook and double-click it.
-Paste the following code into the editor window:
-vba
-Копировать
-Редактировать
+## Installation
+1. Open Excel and press Alt + F11 to open the VBA editor.
+2. In the left panel, find **ThisWorkbook** and double-click it.
+3. Paste the following code into the editor window:
+```
 Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
     ' Check if the changes happened in the sheet with formulas
     If Not Intersect(Target, Sh.UsedRange) Is Nothing Then
         Application.Calculate ' Recalculates all formulas in the workbook
     End If
 End Sub
+```
 Save the changes and close the VBA editor.
 How to Use
 Every time data changes on any sheet, the macro automatically recalculates all formulas in the workbook.
