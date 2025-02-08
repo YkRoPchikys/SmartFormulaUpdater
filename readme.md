@@ -1,40 +1,61 @@
-Автоматическое обновление формул в Excel (VBA макрос)
-Описание
-Этот макрос предназначен для автоматического обновления всех формул в рабочем листе при изменении данных. Он использует событие Workbook_SheetChange, чтобы отслеживать изменения в данных на любом из листов книги и автоматически пересчитывает все формулы с помощью команды Application.Calculate.
+# SmartFormulaUpdater
 
-Макрос полезен, если вы часто работаете с данными в Excel и хотите, чтобы формулы всегда обновлялись без необходимости вручную их пересчитывать.
+## Описание
 
+**SmartFormulaUpdater** — это макрос для автоматического обновления формул в рабочих листах Excel при изменении данных. Он помогает пользователям поддерживать актуальные вычисления без необходимости вручную пересчитывать формулы.
+
+Этот макрос отслеживает изменения данных в любом из листов книги и автоматически обновляет все формулы, используя команду пересчета `Application.Calculate`. Это решение идеально подходит для больших рабочих книг, где обновление формул вручную может занять много времени.
+
+## Установка
+
+1. Откройте Excel и нажмите `Alt + F11`, чтобы открыть редактор VBA.
+2. В панели слева найдите **ThisWorkbook** и дважды щелкните на него.
+3. Вставьте следующий код в окно редактора:
+
+```vba
+Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
+    ' Проверка, что изменения произошли в листе с формулами
+    If Not Intersect(Target, Sh.UsedRange) Is Nothing Then
+        Application.Calculate ' Пересчитывает все формулы в книге
+    End If
+End Sub
+Сохраните изменения и закройте редактор VBA.
 Как использовать
-Откройте вашу книгу Excel.
-Нажмите Alt + F11, чтобы открыть редактор VBA.
-В левой части окна найдите ThisWorkbook и дважды кликните на него.
-Вставьте код макроса в окно ThisWorkbook.
-Сохраните книгу и убедитесь, что макросы включены.
-Теперь всякий раз, когда вы вносите изменения в данные на любом листе, все формулы в книге будут автоматически пересчитаны.
+Каждый раз, когда данные на любом из листов изменяются, макрос автоматически пересчитывает все формулы в книге.
+Вам не нужно вручную запускать пересчет формул — это происходит автоматически при каждом изменении данных.
+Особенности
+Автоматическое обновление формул: После каждого изменения данных в книге, формулы обновляются без участия пользователя.
+Подходит для больших файлов: Макрос идеально работает с большими рабочими книгами, где множество формул зависят от данных в различных ячейках.
+Простота в установке: Все, что нужно — это добавить код в ThisWorkbook, и макрос сразу начнёт работать.
+Лицензия
+Этот проект распространяется под лицензией MIT. Подробнее см. файл LICENSE.
 
-Важное замечание
-Этот макрос пересчитывает все формулы в книге. Если вы хотите ограничить обновление только на определенных листах или в определенных диапазонах, вы можете изменить код в соответствии с вашими потребностями.
-
-Примечания
-Поддерживается версия Excel с поддержкой VBA.
-Если у вас возникнут вопросы, не стесняйтесь обращаться через Issues на GitHub.
-Automatic Formula Update in Excel (VBA Macro)
+SmartFormulaUpdater
 Description
-This macro is designed to automatically update all formulas in a worksheet when data is changed. It uses the Workbook_SheetChange event to track changes in the data on any sheet of the workbook and automatically recalculates all formulas using the Application.Calculate command.
+SmartFormulaUpdater is a macro designed to automatically update formulas in Excel worksheets when data changes. It helps users maintain accurate calculations without the need to manually recalculate formulas.
 
-This macro is useful if you frequently work with data in Excel and want your formulas to always be updated without the need to manually recalculate them.
+This macro tracks data changes in any sheet of the workbook and automatically updates all formulas by using the Application.Calculate command. This solution is perfect for large workbooks where manually updating formulas could be time-consuming.
 
+Installation
+Open Excel and press Alt + F11 to open the VBA editor.
+In the left panel, find ThisWorkbook and double-click it.
+Paste the following code into the editor window:
+vba
+Копировать
+Редактировать
+Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
+    ' Check if the changes happened in the sheet with formulas
+    If Not Intersect(Target, Sh.UsedRange) Is Nothing Then
+        Application.Calculate ' Recalculates all formulas in the workbook
+    End If
+End Sub
+Save the changes and close the VBA editor.
 How to Use
-Open your Excel workbook.
-Press Alt + F11 to open the VBA editor.
-On the left, find ThisWorkbook and double-click on it.
-Paste the macro code into the ThisWorkbook window.
-Save the workbook and make sure macros are enabled.
-Now, every time you make a change to the data on any sheet, all formulas in the workbook will be automatically recalculated.
-
-Important Note
-This macro recalculates all formulas in the workbook. If you want to limit the update to specific sheets or ranges, you can modify the code according to your needs.
-
-Notes
-Supported on Excel versions that support VBA.
-If you have any questions, feel free to reach out via Issues on GitHub.
+Every time data changes on any sheet, the macro automatically recalculates all formulas in the workbook.
+You don't need to manually trigger the formula recalculation — it happens automatically when the data changes.
+Features
+Automatic formula update: After each data change in the workbook, formulas are updated without user interaction.
+Works well with large files: The macro performs excellently with large workbooks where many formulas depend on data from various cells.
+Easy installation: All you need to do is add the code to ThisWorkbook, and the macro will start working right away.
+License
+This project is licensed under the MIT License. See the LICENSE file for more information.
