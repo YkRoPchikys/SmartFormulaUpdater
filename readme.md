@@ -43,7 +43,7 @@ This macro tracks data changes in any sheet of the workbook and automatically up
 1. Open Excel and press Alt + F11 to open the VBA editor.
 2. In the left panel, find **ThisWorkbook** and double-click it.
 3. Paste the following code into the editor window:
-```
+```vba
 Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
     ' Check if the changes happened in the sheet with formulas
     If Not Intersect(Target, Sh.UsedRange) Is Nothing Then
